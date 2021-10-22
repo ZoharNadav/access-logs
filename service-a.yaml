@@ -1,0 +1,23 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: zohar
+  name: service-b
+  labels:
+    app: service2
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: service2
+  template:
+    metadata:
+      labels:
+        app: service2
+    spec:
+      containers:
+        - name: service-b
+          image: nmginter.azurecr.io/zohar/service-b:latest
+          ports:
+            - containerPort: 80
